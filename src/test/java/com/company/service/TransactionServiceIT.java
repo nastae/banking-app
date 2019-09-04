@@ -4,8 +4,8 @@ package com.company.service;
 import com.company.dto.TransactionDTO;
 import com.company.repository.TransactionRepository;
 import com.company.repository.UserRepository;
-import com.company.repository.entity.UserEntity;
 import com.company.repository.entity.TransactionEntity;
+import com.company.repository.entity.UserEntity;
 import com.company.service.mapping.TransactionMapper;
 import com.company.service.mapping.TransactionMapperImpl;
 import com.google.common.collect.ImmutableList;
@@ -34,12 +34,6 @@ public class TransactionServiceIT {
 
     @TestConfiguration
     static class TaskServiceITContextConfiguration {
-
-        @Bean
-        public TransactionService taskService() {
-            return new TransactionService();
-        }
-
         @Bean
         public TransactionMapper taskMapper() {
             return new TransactionMapperImpl();

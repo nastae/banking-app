@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.company</groupId>
-	<artifactId>banking-app-api</artifactId>
+	<artifactId>banking-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>banking-app-api</name>
+	<name>banking-app</name>
 
 	<properties>
 		<java.version>1.8</java.version>

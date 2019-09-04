@@ -20,14 +20,17 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class TransactionService {
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
+    private final UserRepository userRepository;
+    private final TransactionMapper transactionMapper;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private TransactionMapper transactionMapper;
+    public TransactionService(TransactionRepository transactionRepository,
+                              UserRepository userRepository, TransactionMapper transactionMapper) {
+        this.transactionRepository = transactionRepository;
+        this.userRepository = userRepository;
+        this.transactionMapper = transactionMapper;
+    }
 
     public synchronized Either<Object, TransactionDTO> addTransaction(Long clientId, TransactionDTO transaction) {
         final Optional<UserEntity> user =  userRepository.findById(clientId);
@@ -43,7 +46,7 @@ public class TransactionService {
     public List<TransactionDTO> getAll(Long clientId, Pageable pageRequest) {
         return transactionRepository.findByUserId(clientId, pageRequest)
                                     .stream()
-                                    .map(t -> transactionMapper.fromEntity(t))
+                                    .map(transactionMapper::fromEntity)
                                     .collect(toList());
     }
 

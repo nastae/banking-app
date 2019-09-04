@@ -1,5 +1,6 @@
 package com.company.service;
 
+import com.company.controller.AuthController;
 import com.company.dto.UserDTO;
 import com.company.repository.UserRepository;
 import com.company.service.mapping.UserMapper;
@@ -12,11 +13,14 @@ import java.util.Optional;
 @Service
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Autowired
-    private UserMapper userMapper;
+    public AuthService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     @Transactional
     public Optional<UserDTO> register(UserDTO userDTO) {

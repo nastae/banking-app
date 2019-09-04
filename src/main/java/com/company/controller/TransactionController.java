@@ -15,8 +15,12 @@ import javax.validation.Valid;
 @CrossOrigin
 public class TransactionController {
 
+    private final TransactionService transactionService;
+
     @Autowired
-    private TransactionService transactionService;
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
     @PostMapping("/{userId}")
     public ResponseEntity<?> addTransaction(@PathVariable Long userId, @Valid @RequestBody TransactionDTO transaction) {
